@@ -1,1 +1,12 @@
 {% comment %} {% extends 'base.html' %} {% endcomment %}
+{% block content %}
+    <h2>Inscrivez-vous</h2>
+    {% if form.errors %}
+        {{form.errors}}
+    {% endif %}
+    <form method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <button onclick="window.location.href={% url 'login' %};">Retour</button><button type="submit">S'inscrire</button>
+    </form>
+{% endblock content %}

@@ -1,5 +1,10 @@
 {% comment %} {% extends 'base.html' %} {% endcomment %}
 {% block content %}
     <h2>Inscrivez-vous maintenant</h2>
-    <button>S'inscrire</button>
+    <button onclick="window.location.href={% url 'signup' %};">S'inscrire</button>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Se connecter</button>
+    </form>
 {% endblock content %}

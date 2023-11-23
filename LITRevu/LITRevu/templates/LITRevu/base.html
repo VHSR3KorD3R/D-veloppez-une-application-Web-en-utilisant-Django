@@ -4,8 +4,10 @@
         <title>LITRevu</title>
     </head>
     <body>
-        
-    </body>
-    <div class="main"></div>
+        <nav>
+            <a href="{% url 'logout' %}">Se déconnecter</a>
+        </nav>
+        <div class="main"></div>
         {% block content %}{% endblock content %}
+    </body>
 </html>

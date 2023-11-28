@@ -14,7 +14,9 @@ def ticket_creation_form(request):
     if request.method == 'POST':
         ticket_creation_form = forms.TicketCreationForm(request.POST)
         if ticket_creation_form.is_valid():
-            ticket_creation_form.save()
+            ticket = ticket_creation_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
     context = {
         'ticket_creation_form': ticket_creation_form
     }

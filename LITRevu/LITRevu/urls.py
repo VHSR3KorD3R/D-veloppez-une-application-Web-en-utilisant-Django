@@ -30,5 +30,6 @@ urlpatterns = [
     path('home/', LITRevu.views.home, name='home'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', authentication.views.signup_page, name='signup'),
-    path("create_ticket/", LITRevu.views.ticket_creation_form, name="ticket_creation_form")
+    path("create_ticket/", LITRevu.views.ticket_form, name="ticket_form"),
+    path('ticket/<int:ticket_id>/edit', LITRevu.views.edit_ticket, name='edit_ticket'),
 ]

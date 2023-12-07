@@ -14,9 +14,6 @@ class Ticket(models.Model):
     image = models.ImageField(upload_to='chemin/images/', blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
-    def get_absolute_url(self):
-        return reverse('update_ticket', args=[str(self.id)])
-
 
 class Review(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
@@ -38,6 +35,3 @@ class UserFollows(models.Model):
 
     class Meta:
         unique_together = ('user', 'followed_user')
-
-    def __str__(self):
-        return self.followed_user.username

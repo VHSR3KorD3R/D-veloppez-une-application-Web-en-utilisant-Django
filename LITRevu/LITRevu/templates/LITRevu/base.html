@@ -6,6 +6,8 @@
     <body>
         <nav>
             <a href="{% url 'logout' %}">Se déconnecter</a>
+            <a href={% url 'ticket_form' %}>ticket</a>
+            <a href={% url 'review_form'%}>critique</a>
         </nav>
         <div class="main"></div>
         {% block content %}{% endblock content %}

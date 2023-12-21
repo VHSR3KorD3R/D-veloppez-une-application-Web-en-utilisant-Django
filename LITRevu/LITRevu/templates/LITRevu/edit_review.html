@@ -1,0 +1,10 @@
+{% extends 'LITRevu/base.html' %}
+{% block content %}
+    <h2>Modifier votre critique</h2>
+    <h3>Vous êtes en train de poster en réponse à</h3>
+    <p>{{ticket.time_created}}</p>
+    <p>{{ticket.user}} a demandé une critique</p> <br>
+    {{ticket.title}}<br>
+    {{ticket.description}}<br>
+    <img src="{{ticket.image.url}}">
+{% endblock content %}

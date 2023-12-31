@@ -1,6 +1,17 @@
 {% extends 'LITRevu/base.html' %}
+{% load LITRevu_extras %}
 {% block content %}
     <h2>test</h2>
     <a href={% url 'ticket_form' %}>ticket</a>
     <a href={% url 'review_form'%}>critique</a>
+    <h1>Flux</h1>
+    <div class="grid-container">
+        {% for instance in tickets_and_reviews %}
+            {% if instance|model_type == 'Ticket' %}
+                {% include 'LITRevu/ticket_div.html' %}
+            {% elif instance|model_type == 'Review' %}
+                {% include 'LITRevu/review_div.html' %}
+            {% endif %}
+        {% endfor %}
+    </div>
 {% endblock content %}

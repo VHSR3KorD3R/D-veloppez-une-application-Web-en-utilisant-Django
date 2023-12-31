@@ -1,0 +1,26 @@
+{% extends 'LITRevu/base.html' %}
+{% load LITRevu_extras %}
+{% block content %}
+    <h1>Vos posts</h1>
+    <div class="grid-container">
+        {% for instance in tickets_and_reviews %}
+            {% if instance|model_type == 'Ticket' %}
+                {% include 'LITRevu/ticket_div.html' %}
+{% comment %}
+                    <div class="post">
+                        <h4>Vous avez publié un ticket</h4>
+                        <p>{{instance.time_created}}</p>
+                    </div>
+{% endcomment %}
+            {% elif instance|model_type == 'Review' %}
+                {% include 'LITRevu/review_div.html' %}
+                {% comment %} <div class="post">
+                    <h4>Vous avez publié une critique</h4>
+                    <p>{{instance.time_created}}</p>
+                    <p>{{instance.headline}} - {{instance.rating}}</p>
+                    <p>{{instance.body}}</p>
+                </div> {% endcomment %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'LITRevu/base.html' %}
+{% block content %}
+    <h2>Suivre des utilisateurs</h2>
+    <form method="post">
+        {{ form.as_p }}
+        form.
+        {% csrf_token %}
+        <button type="submit" >Confirmer</button>
+    </form>
+{% endblock content %}

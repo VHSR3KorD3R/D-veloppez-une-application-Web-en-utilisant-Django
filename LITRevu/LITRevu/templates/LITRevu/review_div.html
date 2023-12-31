@@ -1,0 +1,16 @@
+<div class="post">
+    {% if instance.user == request.user %}
+        <p> Vous avez publié une critique</p>
+    {% else %}
+        <p>{{instance.user }} a publié une critique</p>
+    {% endif %}
+    <p>{{instance.time_created}}</p>
+    <p>{{instance.headline}} - Note: {{instance.rating}}</p>
+    <p>{{instance.body}}</p>
+    <div class="post">
+        <p>Ticket associé</p>
+        <p>{{instance.ticket.user}}</p>
+        <p>{{instance.ticket.title}}</p>
+        <p><p>{{instance.ticket.description}}</p></p>
+    </div>
+</div>

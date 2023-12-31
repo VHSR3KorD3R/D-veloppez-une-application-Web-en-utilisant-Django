@@ -1,0 +1,9 @@
+{% if instance.user == request.user %}
+    <p> Vous avez demandé une critique</p>
+{% else %}
+    <p>{{instance.user }} a demandé une critique</p>
+{% endif %}
+    <p> {{ instance.time_created }}</p>
+</div>
+<p>{{instance.title }}</p>
+<p>{{instance.description }}</p>

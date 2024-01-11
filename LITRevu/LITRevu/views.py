@@ -111,7 +111,12 @@ def home(request):
     current_user = request.user
     tickets = Ticket.objects.filter(user=current_user)
     reviews = Review.objects.filter(user=current_user)
-    tickets_and_reviews = sorted(chain(tickets, reviews), key=lambda instance:instance.time_created, reverse=True)
+    tickets_followed = Ticket.objects.filter(user__in=current_user.follows.all())
+    reviews_followed = Review.objects.filter(user__in=current_user.follows.all())
+    print(tickets_followed)
+    print(reviews_followed)
+    
+    tickets_and_reviews = sorted(chain(tickets, reviews, tickets_followed, reviews_followed), key=lambda instance:instance.time_created, reverse=True)
     context = {
         'tickets_and_reviews': tickets_and_reviews
         }
@@ -125,28 +130,35 @@ def subscribe(request):
     if request.method == 'POST':
         form = FollowUsersForm(request.POST)
     
-    #     if form.is_valid():
-    #         try:
-    #             followed_user = User.objects.get(username=request.POST['followed_user'])
-    #             if request.user == followed_user:
-    #                 messages.error(request, 'Vous ne pouvez pas vous abonner à vous-même!')
-    #             else:
-    #                 try:
-    #                     UserFollows.objects.create(user=request.user, followed_user=followed_user)
-    #                     request.user.follows.add(followed_user)
-    #                     messages.success(request, f'Vous êtes maintenant abonné à {followed_user}!')
-    #                 except IntegrityError:
-    #                     messages.error(request, f'Vous êtes déjà abonné à {followed_user}!')
+        if form.is_valid():
+            try:
+                followed_user = User.objects.get(username=request.POST['followed_user'])
+                if request.user == followed_user:
+                    messages.error(request, 'Vous ne pouvez pas vous abonner à vous-même!')
+                else:
+                    try:
+                        request.user.follows.add(followed_user)
+                        messages.success(request, f'Vous êtes maintenant abonné à {followed_user}!')
+                    except IntegrityError:
+                        messages.error(request, f'Vous êtes déjà abonné à {followed_user}!')
 
-    #         except User.DoesNotExist:
-    #             messages.error(request, f'L\'utilisateur {form.data["followed_user"]} n\'existe pas!')
+            except User.DoesNotExist:
+                messages.error(request, f'L\'utilisateur {form.data["followed_user"]} n\'existe pas!')
                 
-    # user_follows = request.user.follows.all()
-    # followed_by = UserFollows.objects.filter(followed_user=request.user).order_by('user')
+    user_follows = request.user.follows.all()
+    followed_by = User.objects.filter(follows=request.user)
+    print(followed_by)
 
     context = {
         'form': form,
-        # 'followed_users': user_follows,
-        # 'following_users': followed_by,
+        'followed_users': user_follows,
+        'following_users': followed_by,
     }
     return render(request, 'LITRevu/subscribe.html', context=context)
+
+@login_required
+def unsubscribe(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    request.user.follows.remove(user)
+    
+    return redirect('subscribe')

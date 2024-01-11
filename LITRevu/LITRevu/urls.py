@@ -38,6 +38,7 @@ urlpatterns = [
     path('review/<int:review_id>/edit', LITRevu.views.edit_review, name='edit_review'),
     path('posts/', LITRevu.views.all_posts, name='posts'),
     path('subscribe/', LITRevu.views.subscribe, name='subscribe'),
+    path('unsubscribe/<int:user_id>', LITRevu.views.unsubscribe, name='unsubscribe'),
 ]
 
 if settings.DEBUG:

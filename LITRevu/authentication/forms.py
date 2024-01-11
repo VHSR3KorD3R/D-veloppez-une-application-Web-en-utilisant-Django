@@ -7,8 +7,9 @@ class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
 
-class FollowUsersForm(forms.ModelForm):
-    class Meta:
-        model = User
-        follows = forms.CharField(max_length=100)
-        fields = ['follows']
+class FollowUsersForm(forms.Form):
+    followed_user = forms.CharField(max_length=100)
+    # class Meta:
+    #     model = User
+    #     follows = forms.CharField(max_length=100)
+    #     fields = ['follows']

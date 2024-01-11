@@ -24,7 +24,7 @@ class DeleteReviewForm(forms.Form):
     delete_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     
 # class FollowUsersForm(forms.Form):
+#     followed_user = forms.CharField(widget=forms.Textarea, max_length=255, required=True)
 #     class Meta:
 #         model = User
-#         fields = ['follows']
-#     followed_user = forms.CharField(label=False, widget=forms.TextInput())
+#         fields = ['follows', 'followed_user']

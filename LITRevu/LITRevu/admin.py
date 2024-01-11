@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from LITRevu.models import Ticket, Review, UserFollows
+from LITRevu.models import Ticket, Review
 
 class TicketAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'user', 'image', 'time_created')
@@ -13,5 +13,4 @@ class UserFollowsAdmin(admin.ModelAdmin):
 
 admin.site.register(Ticket)
 admin.site.register(Review)
-admin.site.register(UserFollows)
 # admin.site.register(follows)

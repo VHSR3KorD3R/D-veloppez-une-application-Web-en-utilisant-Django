@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../7192426-Django-intermediaire-P4C3S2-SOLUTION-paginer-flux-photos"
 		}
 	]
 }

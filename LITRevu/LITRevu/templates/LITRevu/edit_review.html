@@ -6,5 +6,20 @@
     <p>{{ticket.user}} a demandé une critique</p> <br>
     {{ticket.title}}<br>
     {{ticket.description}}<br>
-    <img src="{{ticket.image.url}}">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Critique</h2>
+        {{review_form.edit_review}}
+        {{review_form.headline.label}}:<br>
+        {{review_form.headline}}<br>
+        <br>
+        {{review_form.body.label}}: <br>
+        {{review_form.body}}<br>
+        <br>
+        {{review_form.rating.label}}: <br>
+        {{review_form.rating}}<br>
+        <br>
+        <button type="submit">Envoyer</button>
+    </form>
+    {% comment %} <img src="{{ticket.image.url}}"> {% endcomment %}
 {% endblock content %}

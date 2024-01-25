@@ -2,6 +2,7 @@
 {% block content %}
     <h2>Créer un ticket</h2>
     <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         {{ticket_form.title.label}}: <br>
         {{ticket_form.title}} <br>
         <br>
@@ -11,7 +12,6 @@
         {{ticket_form.image.label}}: <br>
         {{ticket_form.image}} <br>
         <br>
-        {% csrf_token %}
         <button type="submit">Envoyer</button>
     </form>
 {% endblock content %}

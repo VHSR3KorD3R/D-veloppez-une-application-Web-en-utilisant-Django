@@ -2,6 +2,11 @@
     <p> Vous avez demandé une critique</p>
 {% else %}
     <p>{{instance.user }} a demandé une critique</p>
+    {% if not instance.has_review %}
+        {% comment %} <p> not review</p>
+        <p>{{instance.id}}</p> {% endcomment %}
+        <a class="" href="{% url 'create_review_with_ticket' instance.id %}">vréer critique</a>
+    {% endif %}
 {% endif %}
     <p> {{ instance.time_created }}</p>
 </div>

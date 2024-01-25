@@ -12,6 +12,8 @@
                         <p>{{instance.time_created}}</p>
                     </div>
 {% endcomment %}
+                    <a class="" href="{% url 'edit_ticket' instance.id %}">Éditer</a>
+                    <a href="{% url 'delete_ticket' instance.id %}">Supprimer</a>
             {% elif instance|model_type == 'Review' %}
                 {% include 'LITRevu/review_div.html' %}
                 {% comment %} <div class="post">
@@ -20,6 +22,8 @@
                     <p>{{instance.headline}} - {{instance.rating}}</p>
                     <p>{{instance.body}}</p>
                 </div> {% endcomment %}
+                    <a class="" href="{% url 'edit_review' instance.id %}">Éditer</a>
+                    <a href="{% url 'delete_review' instance.id %}">Supprimer</a>
             {% endif %}
         {% endfor %}
     </div>

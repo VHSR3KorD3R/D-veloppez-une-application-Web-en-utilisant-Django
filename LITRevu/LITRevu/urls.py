@@ -39,6 +39,9 @@ urlpatterns = [
     path('posts/', LITRevu.views.all_posts, name='posts'),
     path('subscribe/', LITRevu.views.subscribe, name='subscribe'),
     path('unsubscribe/<int:user_id>', LITRevu.views.unsubscribe, name='unsubscribe'),
+    path('create_review_with_ticket/<int:ticket_id>/edit', LITRevu.views.create_review_with_ticket, name='create_review_with_ticket'),
+    path('delete_review/<int:review_id>/delete', LITRevu.views.delete_review, name='delete_review'),
+    path('delete_ticket/<int:ticket_id>/delete', LITRevu.views.delete_ticket, name='delete_ticket'),
 ]
 
 if settings.DEBUG:

@@ -1,6 +1,8 @@
 {% extends 'LITRevu/base.html' %}
 {% load LITRevu_extras %}
+{% load static %}
 {% block content %}
+    <link rel="stylesheet" href="{% static 'LITRevu/style.css' %}">
     <h1>Vos posts</h1>
     <div class="grid-container">
         {% for instance in tickets_and_reviews %}

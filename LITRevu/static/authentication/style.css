@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+}
+
+button {
+    display:block;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.title {
+    margin: 0;
+}
+
+.login-signup {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+.signup-box, .login-box {
+    height: 75%;
+}
+
+.signup {
+    text-align: center;
+}
+
+.helptext {
+    display: none;
+}

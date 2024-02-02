@@ -1,14 +1,23 @@
-{% if instance.user == request.user %}
-    <p> Vous avez demandé une critique</p>
-{% else %}
-    <p>{{instance.user }} a demandé une critique</p>
-    {% if not instance.has_review %}
-        {% comment %} <p> not review</p>
-        <p>{{instance.id}}</p> {% endcomment %}
-        <a class="" href="{% url 'create_review_with_ticket' instance.id %}">vréer critique</a>
+<div class="metadata">
+    {% if instance.user == request.user %}
+        <div class="creator">
+            <p> Vous avez demandé une critique</p>
+        </div>
+    {% else %}
+        <div class="creator">
+            <p>{{instance.user }} a demandé une critique</p>
+        </div>
     {% endif %}
-{% endif %}
-    <p> {{ instance.time_created }}</p>
+        <div class="time">
+            <p> {{ instance.time_created }}</p>
+        </div>
 </div>
-<p>{{instance.title }}</p>
+<h2>{{instance.title }} - </h2>
 <p>{{instance.description }}</p>
+{% if not instance.has_review %}
+{% comment %} <p> not review</p>
+<p>{{instance.id}}</p> {% endcomment %}
+    <a href="{% url 'create_review_with_ticket' instance.id %}">
+        <button class="button b-posts">créer critique</button>
+    </a>
+{% endif %}

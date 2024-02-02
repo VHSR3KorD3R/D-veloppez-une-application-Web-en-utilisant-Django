@@ -1,0 +1,16 @@
+{% load static %}
+<html>
+    <head>
+        <title>LITRevu</title>
+        <link rel="stylesheet" href="{% static 'authentication/style.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="title">
+                <h3>LITRevu</h3>
+            </div>
+        </div>
+    </body>
+    <div class="main"></div>
+    {% block content %}{% endblock content %}
+</html>

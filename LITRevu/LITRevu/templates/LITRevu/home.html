@@ -1,15 +1,26 @@
 {% extends 'LITRevu/base.html' %}
 {% load LITRevu_extras %}
+{% load static %}
 {% block content %}
-    <a href={% url 'ticket_form' %}>ticket</a>
-    <a href={% url 'review_form'%}>critique</a>
-    <h1>Flux</h1>
+    <link rel="stylesheet" href="{% static 'LITRevu/style.css' %}">
+    <div class="create_ticket_review">
+        <div class="ticket-button">
+            <a href={% url 'ticket_form' %}><button class="button b-home">Demander une critique</button></a>
+        </div>
+        <div class="review-button">
+            <a href={% url 'review_form'%}><button class="button b-home">Créer une critique</button></a>
+        </div>
+    </div>
     <div class="grid-container">
         {% for instance in tickets_and_reviews %}
             {% if instance|model_type == 'Ticket' %}
-                {% include 'LITRevu/ticket_div.html' %}
+                <div class="ticket-box center padding-left">
+                    {% include 'LITRevu/ticket_div.html' %}
+                </div>
             {% elif instance|model_type == 'Review' %}
-                {% include 'LITRevu/review_div.html' %}
+                <div class="review-box center padding-left">
+                    {% include 'LITRevu/review_div.html' %}
+                </div>
             {% endif %}
         {% endfor %}
     </div>

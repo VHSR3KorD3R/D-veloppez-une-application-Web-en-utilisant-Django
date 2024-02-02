@@ -1,12 +1,17 @@
-{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% extends 'authentication/base.html' %}
 {% block content %}
     <h2>Inscrivez-vous</h2>
     {% if form.errors %}
         {{form.errors}}
     {% endif %}
-    <form method="post">
-        {{form.as_p}}
-        {% csrf_token %}
-        <button onclick="window.location.href={% url 'login' %};">Retour</button><button type="submit">S'inscrire</button>
-    </form>
+    <div class="signup">
+        <form method="post">
+            {% csrf_token %}
+            {{form.username}} <br>
+            {{form.password1}}<br>
+            {{form.password2}}<br>
+            {% comment %} <input type="text" name="user" placeholder="{{form.username.label}}"> {% endcomment %}
+            <button onclick="window.location.href={% url 'login' %};">Retour</button><button type="submit">S'inscrire</button>
+        </form>
+    </div>
 {% endblock content %}

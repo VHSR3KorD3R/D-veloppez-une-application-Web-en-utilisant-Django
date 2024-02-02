@@ -6,6 +6,7 @@ from . import forms
 
 def signup_page(request):
     form = forms.SignupForm()
+    print(form.fields)
     if request.method == 'POST':
         form = forms.SignupForm(request.POST)
         if form.is_valid():

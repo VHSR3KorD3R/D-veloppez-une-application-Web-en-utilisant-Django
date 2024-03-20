@@ -1,4 +1,5 @@
-# Installation
+# Développez une application Web en utilisant Django
+## Installation
 
 1 - Installer Python 3 et git
 

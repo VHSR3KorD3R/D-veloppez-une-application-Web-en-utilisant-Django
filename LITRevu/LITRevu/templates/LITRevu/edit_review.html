@@ -1,25 +1,44 @@
 {% extends 'LITRevu/base.html' %}
 {% block content %}
-    <h2>Modifier votre critique</h2>
-    <h3>Vous êtes en train de poster en réponse à</h3>
-    <p>{{ticket.time_created}}</p>
-    <p>{{ticket.user}} a demandé une critique</p> <br>
-    {{ticket.title}}<br>
-    {{ticket.description}}<br>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h2>Critique</h2>
-        {{review_form.edit_review}}
-        {{review_form.headline.label}}:<br>
-        {{review_form.headline}}<br>
-        <br>
-        {{review_form.body.label}}: <br>
-        {{review_form.body}}<br>
-        <br>
-        {{review_form.rating.label}}: <br>
-        {{review_form.rating}}<br>
-        <br>
-        <button type="submit">Envoyer</button>
-    </form>
+    <div class="page-title">
+        <h2>Créer une critique</h2>
+    </div>
+    <div class="edit-ticket-review">
+        <h3>Vous êtes en train de poster en réponse à</h3>
+        <div class="ticket-box-flex">
+            <div class="metadata">
+                {% if ticket.user == request.user %}
+                    <div class="creator">
+                        <p> Vous avez demandé une critique</p>
+                    </div>
+                {% else %}
+                    <div class="creator">
+                        <p>{{ticket.user }} a demandé une critique</p>
+                    </div>
+                {% endif %}
+                    <div class="time">
+                        <p> {{ ticket.time_created }}</p>
+                    </div>
+            </div>
+            <p>{{ticket.title}}</p>
+            <p>{{ticket.description }}</p>
+        </div>
+        <div class="form">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2>Critique</h2>
+                <div class="edit-review">
+                    {% comment %} {{review_form.edit_review}} {% endcomment %}
+                    <h3><label for="review-headline" >{{review_form.headline.label}}</label></h3>
+                    {{review_form.headline}}<br>
+                    <h3><label for="review-body" >{{review_form.body.label}}</label></h3>
+                    {{review_form.body}}<br>
+                    <h3>{{review_form.rating.label}}</h3>
+                    {{review_form.rating}}<br>
+                    <button type="submit">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </div>
     {% comment %} <img src="{{ticket.image.url}}"> {% endcomment %}
 {% endblock content %}

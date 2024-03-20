@@ -16,7 +16,6 @@ def ticket_form(request):
     if request.method == 'POST':
         ticket_form = forms.TicketForm(request.POST, request.FILES)
         if ticket_form.is_valid():
-            print("gidfidfy")
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
             ticket.save()
@@ -36,8 +35,13 @@ def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     edit_form = forms.TicketForm(instance=ticket)
     if request.method == 'POST':
-        edit_form = forms.TicketForm(request.POST, instance=ticket)
+        edit_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
         if edit_form.is_valid():
+            new_image = edit_form.cleaned_data.get('image')
+            ticket = edit_form.save(commit=False)
+            print(new_image)
+            print("c'est valide")
+            # print(dir(ticket))
             edit_form.save()
             return redirect('posts')
     context = {
@@ -83,6 +87,7 @@ def delete_ticket(request, ticket_id):
 def edit_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     review_form = forms.ReviewForm(instance=review)
+
     if request.method == 'POST':
         review_form = forms.ReviewForm(request.POST, instance=review)
         if review_form.is_valid():
@@ -156,13 +161,9 @@ def home(request):
     reviews = Review.objects.filter(user=current_user)
     tickets_followed = Ticket.objects.filter(user__in=current_user.follows.all())
     reviews_followed = Review.objects.filter(user__in=current_user.follows.all())
-    print(tickets_followed)
-    print(reviews_followed)
     
     for ticket in tickets_followed:
         ticket.has_review = Review.objects.filter(ticket=ticket).exists()
-        print(ticket.has_review)
-        print(type(ticket))
         
     tickets_and_reviews = sorted(chain(tickets, reviews, tickets_followed, reviews_followed), key=lambda instance:instance.time_created, reverse=True)
     context = {

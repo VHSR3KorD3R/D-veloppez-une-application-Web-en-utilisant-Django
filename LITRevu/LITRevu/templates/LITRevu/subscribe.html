@@ -1,30 +1,39 @@
 {% extends 'LITRevu/base.html' %}
 {% block content %}
-    <h2>Suivre des utilisateurs</h2>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="messages">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-    <form method="post">
-        {{ form.as_p }}
-        {{form.followed_user.title}}
-        {% csrf_token %}
-        <button type="submit" >Confirmer</button>
-    </form>
-    <h2>Vos abonnements</h2>
-    <div class="subscribed">
-        {% for followed_user in followed_users %}
-            <p>{{followed_user}}</p>
-            <a class="" href="{% url 'unsubscribe' followed_user.id %}">Désabonner</a>
-        {% endfor %}
-    </div>
-    <h2>Vos abonnés</h2>
-    <div class="subscribers">
-        {% for following_user in following_users %}
-            <p>{{following_user}}</p>
-        {% endfor %}
+    <div class="subscribe">
+        <h2>Suivre des utilisateurs</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="messages">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {{form.followed_user}}
+            {% csrf_token %}
+            <button type="submit" >Envoyer</button>
+        </form>
+        <h2>Vos abonnements</h2>
+        <div class="subscribed">
+            <table>
+                {% for followed_user in followed_users %}
+                    <tr>
+                        <td><p>{{followed_user}}</p></td>
+                        <td style="width:50px"><a class="" href="{% url 'unsubscribe' followed_user.id %}">Désabonner</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <h2>Vos abonnés</h2>
+        <div class="subscribers">
+            <table>
+                {% for following_user in following_users %}
+                    <tr>
+                        <td><p>{{following_user}}</p></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 {% endblock content %}

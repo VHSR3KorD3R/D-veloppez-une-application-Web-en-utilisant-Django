@@ -1,8 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
 from django.db import models
-from django.urls import reverse
-from django.contrib.auth.models import User
 
 class Ticket(models.Model):
     title = models.fields.CharField(max_length=128)
@@ -11,7 +9,8 @@ class Ticket(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    image = models.ImageField(upload_to='chemin/images/', blank=True, null=True)
+    # image = models.ImageField(upload_to='images', blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
 
@@ -21,6 +20,7 @@ class Review(models.Model):
         'Note',
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
+    # star_rating = Rating()
     headline = models.CharField('Titre', max_length=128)
     body = models.CharField('commentaire', max_length=8192, blank=True)
     user = models.ForeignKey(

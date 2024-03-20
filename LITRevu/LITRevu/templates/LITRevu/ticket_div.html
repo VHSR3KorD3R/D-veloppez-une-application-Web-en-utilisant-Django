@@ -13,11 +13,16 @@
         </div>
 </div>
 <h2>{{instance.title }} - </h2>
-<p>{{instance.description }}</p>
+<p>{{instance.description }}</p> <br>
+{% if instance.image %}
+    <img src="{{instance.image.url}}" alt="couverture-du-livre"> <br>
+{% endif %}
 {% if not instance.has_review %}
+    {% if show_button %}
 {% comment %} <p> not review</p>
 <p>{{instance.id}}</p> {% endcomment %}
-    <a href="{% url 'create_review_with_ticket' instance.id %}">
-        <button class="button b-posts">créer critique</button>
-    </a>
+        <a href="{% url 'create_review_with_ticket' instance.id %}">
+            <button class="button b-posts">créer critique</button>
+        </a>
+    {% endif %}
 {% endif %}

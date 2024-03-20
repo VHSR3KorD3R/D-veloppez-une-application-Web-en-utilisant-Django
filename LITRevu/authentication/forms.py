@@ -20,3 +20,7 @@ class FollowUsersForm(forms.Form):
     #     model = User
     #     follows = forms.CharField(max_length=100)
     #     fields = ['follows']
+        
+    def __init__(self, *args, **kwargs):
+        super(FollowUsersForm, self).__init__(*args, **kwargs)
+        self.fields['followed_user'].widget.attrs['placeholder'] = "Nom d'utilisateur"

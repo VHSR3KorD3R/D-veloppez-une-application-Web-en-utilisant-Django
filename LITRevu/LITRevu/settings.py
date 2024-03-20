@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
+
 from pathlib import Path
+from django.conf import global_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
-    'LITRevu'
+    'LITRevu',
+    'django_starfield'
 ]
 
 MIDDLEWARE = [
@@ -119,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath('static')
+    BASE_DIR.joinpath('static'),
     ]
 
 # Default primary key field type
@@ -133,4 +137,5 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 MEDIA_URL = '/chemin/'
-MEDIA_ROOT = BASE_DIR.joinpath('chemin/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'chemin/images')
+# BASE_DIR.joinpath('chemin/')

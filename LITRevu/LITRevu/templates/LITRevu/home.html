@@ -15,7 +15,9 @@
         {% for instance in tickets_and_reviews %}
             {% if instance|model_type == 'Ticket' %}
                 <div class="ticket-box center padding-left">
-                    {% include 'LITRevu/ticket_div.html' %}
+                    {% with show_button=True %}
+                        {% include 'LITRevu/ticket_div.html' %}
+                    {% endwith %}
                 </div>
             {% elif instance|model_type == 'Review' %}
                 <div class="review-box center padding-left">

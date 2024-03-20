@@ -1,15 +1,31 @@
+{% extends 'LITRevu/base.html' %}
 {% block content %}
-    <h2>Modifier le ticket</h2>
-    <form method="post">
-        {{ edit_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Sauvegarder</button>
-        <hr>
-    </form>
-    <h3>Supprimer le ticket ?</h3>
-    <form method="post">
-        {{ delete_form }}
-        {% csrf_token %}
-        <button type="submit" >Supprimer</button>
-    </form>
+    <div class="edit-ticket">
+        <div class="page-title">
+            <h2>Modifier le ticket</h2>
+        </div>
+        <div class="form">
+            <form method="post" enctype="multipart/form-data">
+                <h3><label for="ticket-title" >{{edit_form.title.label}}</label></h3>
+                <p>{{edit_form.title}}</p>
+                <h3><label for="ticket-description" >{{edit_form.description.label}}</label></h3>
+                <p>{{edit_form.description}}</p>
+                <h3>{{edit_form.image.label}}</h3>
+                <p>{{edit_form.image}}</p>
+                {% csrf_token %}
+                <button type="submit" >Sauvegarder</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    {% comment %} <div class="delete">
+        <div>
+            <h3>Supprimer le ticket ?</h3>
+            <form method="post">
+                {{ delete_form }}
+                {% csrf_token %}
+                <button type="submit" >Supprimer</button>
+            </form>
+        </div>
+    </div> {% endcomment %}
 {% endblock content %}

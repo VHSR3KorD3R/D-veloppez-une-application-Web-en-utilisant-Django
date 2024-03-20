@@ -1,17 +1,24 @@
 {% extends 'LITRevu/base.html' %}
 {% block content %}
-    <h2>Créer un ticket</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ticket_form.title.label}}: <br>
-        {{ticket_form.title}} <br>
-        <br>
-        {{ticket_form.description.label}}: <br>
-        {{ticket_form.description}} <br>
-        <br>
-        {{ticket_form.image.label}}: <br>
-        {{ticket_form.image}} <br>
-        <br>
-        <button type="submit">Envoyer</button>
-    </form>
+    <div class="page-title">
+        <h2>Créer un ticket</h2>
+    </div>
+    <div class="create-ticket bottom">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <h3><label for="ticket-title" >{{ticket_form.title.label}}</label></h3>
+                {{ticket_form.title}}
+                <br>
+                <h3><label for="ticket-description" >{{ticket_form.description.label}}</label></h3>
+                {{ticket_form.description}} <br>
+                <br>
+                <h3>{{ticket_form.image.label}}</h3>
+                {{ticket_form.image}} <br>
+                <br>
+                {% comment %} <button class="create-button" type="submit">Envoyer</button> {% endcomment %}
+                <a href="{% url 'ticket_form' %}">
+                    <button class="button b-posts">Envoyer</button>
+                </a>
+        </form>
+    </div>
 {% endblock content %}

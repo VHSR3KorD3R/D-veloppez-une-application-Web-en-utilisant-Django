@@ -7,7 +7,7 @@
 ```bash
 mkdir Développez une application Web en utilisant Django
 cd Développez une application Web en utilisant Django
-git clone [https://github.com/VHSR3KorD3R/R-solvez-des-probl-mes-en-utilisant-des-algorithmes-en-Python.git](https://github.com/VHSR3KorD3R/D-veloppez-une-application-Web-en-utilisant-Django.git)
+git clone https://github.com/VHSR3KorD3R/R-solvez-des-probl-mes-en-utilisant-des-algorithmes-en-Python.git
 ```
 
 3 - Créez l'environnement virtuel et activez-le
